@@ -147,14 +147,12 @@ public class Camera_Movement : MonoBehaviour {
 	}
 
 
-	public void Selected_Cam(){																// This function is used by the gameObject btn_Cam on the hierarchy to change the camera with a button on screen
+	public void Selected_Cam(int camNo){																// This function is used by the gameObject btn_Cam on the hierarchy to change the camera with a button on screen
 		AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 		if(!CamStyle2D){
 			if(b_ChangeViewEnable && !CameraMultiBall && stateInfo.fullPathHash != MoveStateHash){
 				b_ChangeViewEnable = false;
-				CamView ++;																		// Choose the next camera
-				if(CamView == 5)
-					CamView = 1;
+				CamView = camNo;																		// Choose the next camera
 				cameraSmoothFollow.Player_Change_Camera(CamView);								// Change the position of the camera
 				if(Txt)Txt.text = CamView.ToString();										// Change Text on screen
 			}

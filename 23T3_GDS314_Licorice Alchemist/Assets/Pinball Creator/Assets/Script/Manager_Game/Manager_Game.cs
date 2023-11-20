@@ -405,8 +405,8 @@ public class Manager_Game : MonoBehaviour {
 			if(Input.GetKeyDown(manager_Input_Setting.F_Pause_Game())){
 				F_Pause_Game();}					// Pause Mode
 
-			if(Input.GetKeyDown(manager_Input_Setting.F_Change_Camera())){								// Change the Camera view
-				if(camera_Movement)camera_Movement.Selected_Cam();}	
+			/*if(Input.GetKeyDown(manager_Input_Setting.F_Change_Camera())){								// Change the Camera view
+				if(camera_Movement)camera_Movement.Selected_Cam();}	*/
 
 
 
@@ -423,8 +423,8 @@ public class Manager_Game : MonoBehaviour {
 			if(Input.GetButtonDown(manager_Input_Setting.F_Pause_Game())){
 				F_Pause_Game();}					// Pause Mode
 
-			if(Input.GetButtonDown(manager_Input_Setting.F_Change_Camera())){								// Change the Camera view
-				if(camera_Movement)camera_Movement.Selected_Cam();}	
+			/*if(Input.GetButtonDown(manager_Input_Setting.F_Change_Camera())){								// Change the Camera view
+				if(camera_Movement)camera_Movement.Selected_Cam();}*/	
 		}
 
 

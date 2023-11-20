@@ -1,6 +1,7 @@
 ﻿// Ball.js : Description : this script manage the ball (sound, collision, trail)
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
@@ -24,7 +25,9 @@ public class Ball : MonoBehaviour {
 	public bool 				b_Shake = false;
 	public float 				Shake_Force = 2;
 
-	private bool 				b_OnHole = false;					// Use to know if ball is on a hole or not
+	private bool 				b_OnHole = false;                    // Use to know if ball is on a hole or not
+
+	[HideInInspector] public string flavour = "none";
 
 
 	void Start() {													// --> function Start			
@@ -113,4 +116,9 @@ public class Ball : MonoBehaviour {
 			tmp_Save_Min_Mag = 0;
 		}
 	}
+
+    public void ChangeFlavour(string newFlavour)
+    {
+		flavour = newFlavour;
+    }
 }

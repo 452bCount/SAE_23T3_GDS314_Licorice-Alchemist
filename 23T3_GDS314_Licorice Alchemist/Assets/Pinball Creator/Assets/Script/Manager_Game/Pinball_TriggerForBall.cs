@@ -7,19 +7,33 @@ using UnityEngine;
 public class Pinball_TriggerForBall : MonoBehaviour {
 
 	private GameObject obj_Game_Manager;											// Manager_Game GameObject
-	private Manager_Game gameManager;											// access Manager_Game component from Manager_Game GameObject on the hierarchy
+	private Manager_Game gameManager;                                           // access Manager_Game component from Manager_Game GameObject on the hierarchy
+	public GameObject newBallPos;
+	public Camera_Movement camera_Movement;
 
 	void Start(){																	// --> Function Start
 		if (obj_Game_Manager == null)													// Connect the Mission to the gameObject : "Manager_Game"
 			obj_Game_Manager = GameObject.Find("Manager_Game");
 
-		gameManager = obj_Game_Manager.GetComponent<Manager_Game>();					// Access Manager_Game gameComponent from obj_Game_Manager
-	}
+		gameManager = obj_Game_Manager.GetComponent<Manager_Game>();                    // Access Manager_Game gameComponent from obj_Game_Manager
+
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("MainCamera");         // Connect the main camera
+        foreach (GameObject go_ in gos)
+        {
+            if (go_.GetComponent<Camera_Movement>())
+            {
+                //Camera_Board = go_;
+                camera_Movement = go_.GetComponent<Camera_Movement>();
+            }
+        }
+    }
 
 	void OnTriggerEnter (Collider other) {										// --> Function OnTriggerEnter
 		if(other.transform.tag == "Ball"){												// If it's a ball 
-			gameManager.gamePlay(other.gameObject);										// Send Message to the obj_Game_Manager.  
-		}
+			//gameManager.gamePlay(other.gameObject);										// Send Message to the obj_Game_Manager.
+			other.transform.position = newBallPos.transform.position;
+            if (camera_Movement) camera_Movement.Selected_Cam(2);
+        }
 	}
 
 }

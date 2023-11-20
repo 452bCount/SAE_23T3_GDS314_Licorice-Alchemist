@@ -35,6 +35,9 @@ public class Bumper_js : MonoBehaviour {
 	public Toys[] Toys;
 	public int[] AnimNums;
 
+	[Header("Other Variables")]
+	public string flavour;
+
 
 
 	void Start(){																			// --> function Start
@@ -53,7 +56,8 @@ public class Bumper_js : MonoBehaviour {
 			Rigidbody rb  = contact.otherCollider.GetComponent<Rigidbody>();				// Access rigidbody Component
 			float t = collision.relativeVelocity.magnitude;                             // save the collision.relativeVelocity.magnitude value
 			if (!rb.isKinematic) rb.velocity = new Vector3(rb.velocity.x*.25f,rb.velocity.y*.25f,rb.velocity.z*.25f);		// reduce the velocity at the impact. Better feeling with the slingshot
-			rb.AddForce( -1 * contact.normal * bumperForce,  ForceMode.VelocityChange);   	  	// Add Force
+			rb.AddForce( -1 * contact.normal * bumperForce,  ForceMode.VelocityChange);         // Add Force
+			collision.gameObject.GetComponent<Ball>().ChangeFlavour(flavour);
 		}
 
 		if(Sfx_Hit)sound_.PlayOneShot(Sfx_Hit);						// Play a sound

@@ -47,7 +47,7 @@ public class UI_Call_A_Function : MonoBehaviour {
 		}
 	}
 
-	public void Debug_ChangeCam(){				camera_Movement.Selected_Cam();}	
+	//public void Debug_ChangeCam(){				camera_Movement.Selected_Cam();}	
 
 	public void Debug_NewBall(){				manager_Game.F_NewBall();}	
 	public void Debug_Ball_Saver_On(){			manager_Game.F_Ball_Saver_On();}	

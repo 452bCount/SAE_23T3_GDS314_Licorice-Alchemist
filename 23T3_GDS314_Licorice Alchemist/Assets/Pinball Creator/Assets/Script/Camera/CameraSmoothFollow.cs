@@ -430,28 +430,11 @@ public class CameraSmoothFollow : MonoBehaviour {
 						);
 					}
 				}
-				else if(Cam_Style != 8){																	// --> Move the camera when the player change the camera view
-					t += (Time.deltaTime * 1)/ChangeCamSpeed;
+				else if(Cam_Style != 8){                                                                    // --> Move the camera when the player change the camera view
+					ChangeCamPos();
 
 
-					float localXPos = 0;
-					float localYPos =  Mathf.Lerp(startPosition.localPosition.y, tmp_Target.localPosition.y+offsetY+tmp_offsetPortraitMode.x, t * Time.deltaTime);				// Change the camera position
-					float localZPos =  Mathf.Lerp(startPosition.localPosition.z, tmp_Target.localPosition.z+offsetZ+tmp_offsetPortraitMode.y, t * Time.deltaTime);
-
-
-
-					if(Cam_Style ==9)
-						localXPos = Mathf.Lerp(startPosition.localPosition.x, tmp_Target.localPosition.x, t * Time.deltaTime);
-					else
-						localXPos = Mathf.Lerp(startPosition.localPosition.x, .228f, t*Time.deltaTime);
-
-					transform.localPosition = new Vector3(
-						localXPos,
-						localYPos,
-						localZPos
-					);
-
-					transform.rotation = Quaternion.Lerp(startPosition.rotation, target.rotation, t * Time.deltaTime);		// Change camera rotation
+                    transform.rotation = Quaternion.Lerp(startPosition.rotation, target.rotation, t * Time.deltaTime);		// Change camera rotation
 
 					if(Mathf.Round(transform.localPosition.y*10) == Mathf.Round((tmp_Target.localPosition.y+offsetY+tmp_offsetPortraitMode.x)*10) 		
 						&& Mathf.Round(transform.localPosition.z*10) == Mathf.Round((tmp_Target.localPosition.z+offsetZ+tmp_offsetPortraitMode.y)*10) ){ 	// Use when it is the end of Focus 1
@@ -494,7 +477,30 @@ public class CameraSmoothFollow : MonoBehaviour {
 		}
 	}
 
-	public void Plunger(int CamView){									// --> Call by Camera_Movement.js on Main Camera GameObject on the hierarchy. Ball Enter the plunger
+    public void ChangeCamPos()
+    {
+        t += (Time.deltaTime * 1) / ChangeCamSpeed;
+
+
+        float localXPos = 0;
+        float localYPos = Mathf.Lerp(startPosition.localPosition.y, tmp_Target.localPosition.y + offsetY + tmp_offsetPortraitMode.x, t * Time.deltaTime);               // Change the camera position
+        float localZPos = Mathf.Lerp(startPosition.localPosition.z, tmp_Target.localPosition.z + offsetZ + tmp_offsetPortraitMode.y, t * Time.deltaTime);
+
+
+
+        if (Cam_Style == 9)
+            localXPos = Mathf.Lerp(startPosition.localPosition.x, tmp_Target.localPosition.x, t * Time.deltaTime);
+        else
+            localXPos = Mathf.Lerp(startPosition.localPosition.x, .228f, t * Time.deltaTime);
+
+		transform.localPosition = new Vector3(
+			localXPos,
+			localYPos,
+			localZPos
+		);
+    }
+
+    public void Plunger(int CamView){									// --> Call by Camera_Movement.js on Main Camera GameObject on the hierarchy. Ball Enter the plunger
 		Plunger_Activate = true;
 		newTarget(CamView);												// Change the camera view
 	}
