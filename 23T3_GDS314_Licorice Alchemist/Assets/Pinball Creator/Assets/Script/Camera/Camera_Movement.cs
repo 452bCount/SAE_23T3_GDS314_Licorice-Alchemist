@@ -152,7 +152,8 @@ public class Camera_Movement : MonoBehaviour {
 		if(!CamStyle2D){
 			if(b_ChangeViewEnable && !CameraMultiBall && stateInfo.fullPathHash != MoveStateHash){
 				b_ChangeViewEnable = false;
-				CamView = camNo;																		// Choose the next camera
+				CamView++;
+				if(CamView == 5) { CamView = 1; }
 				cameraSmoothFollow.Player_Change_Camera(CamView);								// Change the position of the camera
 				if(Txt)Txt.text = CamView.ToString();										// Change Text on screen
 			}
