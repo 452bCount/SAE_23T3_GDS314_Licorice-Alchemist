@@ -35,6 +35,7 @@ public class Cauldron : MonoBehaviour
         {
             Debug.Log("Player wins");
             Destroy(other.gameObject);
+            //Next Level
         }
         else
         {

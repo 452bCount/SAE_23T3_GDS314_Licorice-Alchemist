@@ -96,6 +96,7 @@ public class Camera_Movement : MonoBehaviour {
 		if(!b_ChangeViewEnable){															// --> Minimium time before two animations. .5 seconds
 			Timer_ChangeView = Mathf.MoveTowards(Timer_ChangeView,.5f,Time.deltaTime);
 			if(Timer_ChangeView == .5f){
+				//print("Is Reset");
 				b_ChangeViewEnable = true;
 				Timer_ChangeView = 0;
 			}
@@ -127,7 +128,8 @@ public class Camera_Movement : MonoBehaviour {
 	public void PlayIdle(){																	// This function is call by the script Spring_Launcher.js from the gameObject Spring on the hierachy
 		if(!CamStyle2D){
 			anim.SetInteger(ShakerHash, 0);
-			anim.SetBool(IdleHash_2, false);													// The ball exit the plunger										
+			anim.SetBool(IdleHash_2, false);	
+			CamView = 1;// The ball exit the plunger										
 			cameraSmoothFollow.ExitPlunger(CamView);	
 		}										
 	}
@@ -147,14 +149,14 @@ public class Camera_Movement : MonoBehaviour {
 	}
 
 
-	public void Selected_Cam(int camNo){																// This function is used by the gameObject btn_Cam on the hierarchy to change the camera with a button on screen
+	public void Selected_Cam(int cam){																// This function is used by the gameObject btn_Cam on the hierarchy to change the camera with a button on screen
 		AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+		print(cam + b_ChangeViewEnable.ToString());
 		if(!CamStyle2D){
 			if(b_ChangeViewEnable && !CameraMultiBall && stateInfo.fullPathHash != MoveStateHash){
 				b_ChangeViewEnable = false;
-				CamView++;
-				if(CamView == 5) { CamView = 1; }
-				cameraSmoothFollow.Player_Change_Camera(CamView);								// Change the position of the camera
+				CamView = cam;
+                cameraSmoothFollow.Player_Change_Camera(CamView);								// Change the position of the camera
 				if(Txt)Txt.text = CamView.ToString();										// Change Text on screen
 			}
 		}

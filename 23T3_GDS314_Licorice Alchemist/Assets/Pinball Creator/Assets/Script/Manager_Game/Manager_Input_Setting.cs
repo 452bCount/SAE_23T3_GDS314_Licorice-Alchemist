@@ -6,8 +6,8 @@ using UnityEngine;
 public class Manager_Input_Setting : MonoBehaviour {
 	[Header ("Game Input")]
 	public bool _Input_GetButton 			= false;		// true if you want input manage by Edit -> Project Settings -> Input
-	public string Flipper_Left				= "left shift";
-	public string Flipper_Right             = "right shift";
+	public string Flipper_Left				= "left arrow";
+	public string Flipper_Right             = "right arrow";
 	public string Plunger					= "return";
 	public string Pause_Game				= "e";
 	public string Change_Camera				= "c";
