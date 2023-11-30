@@ -1,13 +1,14 @@
 ﻿// Manager_Input_Setting : Description 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Manager_Input_Setting : MonoBehaviour {
 	[Header ("Game Input")]
 	public bool _Input_GetButton 			= false;		// true if you want input manage by Edit -> Project Settings -> Input
-	public string Flipper_Left				= "left arrow";
-	public string Flipper_Right             = "right arrow";
+	public string Flipper_Left				= "s";
+	public string Flipper_Right             = "l";
 	public string Plunger					= "return";
 	public string Pause_Game				= "e";
 	public string Change_Camera				= "c";
@@ -58,5 +59,4 @@ public class Manager_Input_Setting : MonoBehaviour {
 
 
 	public bool F_Debug_Game(){				return PinballDebugMode;}
-
 }
