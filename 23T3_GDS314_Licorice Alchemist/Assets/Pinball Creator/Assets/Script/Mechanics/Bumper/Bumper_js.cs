@@ -37,6 +37,7 @@ public class Bumper_js : MonoBehaviour {
 
 	[Header("Other Variables")]
 	public string flavour;
+	public Color flavourColour;
 
 
 
@@ -57,7 +58,7 @@ public class Bumper_js : MonoBehaviour {
 			float t = collision.relativeVelocity.magnitude;                             // save the collision.relativeVelocity.magnitude value
 			if (!rb.isKinematic) rb.velocity = new Vector3(rb.velocity.x*.25f,rb.velocity.y*.25f,rb.velocity.z*.25f);		// reduce the velocity at the impact. Better feeling with the slingshot
 			rb.AddForce( -1 * contact.normal * bumperForce,  ForceMode.VelocityChange);         // Add Force
-			collision.gameObject.GetComponent<Ball>().ChangeFlavour(flavour);
+			collision.gameObject.GetComponent<Ball>().ChangeFlavour(flavour, flavourColour);
 		}
 
 		if(Sfx_Hit)sound_.PlayOneShot(Sfx_Hit);						// Play a sound

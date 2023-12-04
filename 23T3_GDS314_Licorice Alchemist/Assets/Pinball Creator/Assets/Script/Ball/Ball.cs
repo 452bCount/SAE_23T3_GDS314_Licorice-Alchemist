@@ -28,6 +28,7 @@ public class Ball : MonoBehaviour {
 	private bool 				b_OnHole = false;                    // Use to know if ball is on a hole or not
 
 	[HideInInspector] public string flavour = "none";
+	[HideInInspector] public FlavourCommunicator communicator;
 
 
 	void Start() {													// --> function Start			
@@ -35,8 +36,9 @@ public class Ball : MonoBehaviour {
 		trail = GetComponent<TrailRenderer>();							// Access <TrailRenderer>() Component;	
 
 
-		roll_audio = GetComponent<AudioSource>();						// Access <AudioSource>() Component; if roll sound is selected on the inspector
+		roll_audio = GetComponent<AudioSource>();                       // Access <AudioSource>() Component; if roll sound is selected on the inspector
 
+		communicator = FindAnyObjectByType<FlavourCommunicator>();
 	}
 
 	public void Ball_Shake(Vector3 Direction){
@@ -117,8 +119,9 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-    public void ChangeFlavour(string newFlavour)
+    public void ChangeFlavour(string newFlavour, Color colour)
     {
 		flavour = newFlavour;
+		communicator.UpdateText(flavour, colour);
     }
 }
