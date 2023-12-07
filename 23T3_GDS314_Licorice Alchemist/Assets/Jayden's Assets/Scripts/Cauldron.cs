@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Cauldron : MonoBehaviour
@@ -9,6 +10,9 @@ public class Cauldron : MonoBehaviour
 
     public Camera_Movement camera_Movement;
     public string flavourToWin;
+    public TextMeshPro textMesh;
+    public Color textColour;
+    public Color winColour;
 
     private void Start()
     {
@@ -26,6 +30,8 @@ public class Cauldron : MonoBehaviour
                 camera_Movement = go_.GetComponent<Camera_Movement>();
             }
         }
+
+        textMesh.text = flavourToWin; textMesh.color = textColour;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,7 +39,7 @@ public class Cauldron : MonoBehaviour
         string var = other.gameObject.GetComponent<Ball>().flavour;
         if(var == flavourToWin)
         {
-            Debug.Log("Player wins");
+            textMesh.text = "You Win!"; textMesh.color = winColour;
             Destroy(other.gameObject);
             //Next Level
         }
