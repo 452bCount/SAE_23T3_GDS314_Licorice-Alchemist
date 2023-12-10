@@ -3629,6 +3629,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera_Movement: {fileID: 0}
+  multiflavour: 0
+  winFlavours: []
   flavourToWin: Blueberry
   textMesh: {fileID: 257429844}
   textColour: {r: 0.22745098, g: 0.74509805, b: 1, a: 1}
@@ -4949,7 +4951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114176455981884302, guid: 8c483f93b52a64e9caf0a7bacd8ce3da, type: 3}
       propertyPath: flavour
-      value: Rasberry
+      value: Raspberry
       objectReference: {fileID: 0}
     - target: {fileID: 114176455981884302, guid: 8c483f93b52a64e9caf0a7bacd8ce3da, type: 3}
       propertyPath: flavourColour.a

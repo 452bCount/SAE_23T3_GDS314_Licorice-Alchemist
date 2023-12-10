@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Cauldron : MonoBehaviour
@@ -9,6 +10,8 @@ public class Cauldron : MonoBehaviour
     private Manager_Game gameManager;                                           // access Manager_Game component from Manager_Game GameObject on the hierarchy
 
     public Camera_Movement camera_Movement;
+    public bool multiflavour;
+    public List<string> winFlavours;
     public string flavourToWin;
     public TextMeshPro textMesh;
     public Color textColour;
@@ -31,22 +34,53 @@ public class Cauldron : MonoBehaviour
             }
         }
 
-        textMesh.text = flavourToWin; textMesh.color = textColour;
+        if (multiflavour)
+        {
+            textMesh.text = winFlavours[0].ToString()  + " + " + winFlavours[1].ToString();
+        }
+        else
+        {
+            textMesh.text = flavourToWin; textMesh.color = textColour;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         string var = other.gameObject.GetComponent<Ball>().flavour;
-        if(var == flavourToWin)
+        if (var == flavourToWin)
         {
             textMesh.text = "You Win!"; textMesh.color = winColour;
             Destroy(other.gameObject);
-            //Next Level
+            //Change level from tutorial to level 1 here
         }
         else
         {
             gameManager.gamePlay(other.gameObject);
             if (camera_Movement) camera_Movement.Selected_Cam(1);
+        }
+        
+        if (multiflavour && winFlavours.Count >= 2)
+        {
+            foreach(string flavour in winFlavours)
+            {
+                if(var == flavour)
+                {
+                    winFlavours.Remove(flavour);
+                    
+                    if(winFlavours.Count == 0)
+                    {
+                        textMesh.text = "You Win!"; textMesh.color = winColour;
+                        Destroy(other.gameObject);
+                        // change scene after level 1
+                    }
+                    else
+                    {
+                        textMesh.text = winFlavours[0].ToString();
+                        gameManager.gamePlay(other.gameObject);
+                        if (camera_Movement) camera_Movement.Selected_Cam(1);
+                    }
+                }
+            }
         }
     }
 }
