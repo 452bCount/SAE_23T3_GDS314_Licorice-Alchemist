@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class SoundPlayer : MonoBehaviour
 {
     [Header("Sound Clips")]
@@ -14,50 +15,56 @@ public class SoundPlayer : MonoBehaviour
     public AudioClip pickUpSound;
     public AudioClip catchSound;
     public AudioClip themeMusic;
+    
+    [Space]
+    private AudioSource source;
 
-    public AudioSource source;
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
-    void PlayButtonSound()
+    public void PlayButtonSound()
     {
         source.PlayOneShot(buttonSound);
     }
 
-    void PlayConfirmSound()
+    public void PlayConfirmSound()
     {
         source.PlayOneShot(confirmSound);
     }
 
-    void PlayDenidedSound()
+    public void PlayDenidedSound()
     {
         source.PlayOneShot(deniedSound);
     }
 
-    void PlayTransitionSound()
+    public void PlayTransitionSound()
     {
         source.PlayOneShot(transitionSound);
     }
 
-    void PlayFailSound()
+    public void PlayFailSound()
     {
         source.PlayOneShot(failSound);
     }
 
-    void PlayVictorySound()
+    public void PlayVictorySound()
     {
         source.PlayOneShot(victorySound);
     }
 
-    void PlayPickUpSound()
+    public void PlayPickUpSound()
     {
         source.PlayOneShot(pickUpSound);
     }
 
-    void PlayCatchSound()
+    public void PlayCatchSound()
     {
         source.PlayOneShot(catchSound);
     }
 
-    void PlayThemeMusic()
+    public void PlayThemeMusic()
     {
         source.PlayOneShot(themeMusic);
     }

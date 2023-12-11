@@ -41,8 +41,8 @@ public class Manager_Game : MonoBehaviour {
 	[Header ("Mode Multi Ball")	]										// --> Mode Multi Ball
 	public GameObject obj_Launcher_MultiBall;					// Object that manage the multi-ball on playfield. Manage how the ball is ejected on playfield
 	public MultiBall multiBall; 					// Access MultiBall component from obj_Launcher_MultiBall gameObject;
-	private float Timer_Multi = 1;					// ejection time between two balls 
-	private int Number_Of_Ball_On_Board = 0;						// Know the number of board. 
+	private float Timer_Multi = 1;                  // ejection time between two balls
+	[HideInInspector]public int Number_Of_Ball_On_Board = 0;						// Know the number of board. 
 	private bool Multi_Ball = false;				// Mode Multi ball activate or not
 	private int ReloadNumber = 3;						// number of ball for the multi ball mode. Send by the mission with the function gameManager.F_Mission_MultiBall(missionIndex.F_index(),numberOfBall);
 	private int tmp_ReloadNumber = 3; 					
@@ -1181,7 +1181,7 @@ public class Manager_Game : MonoBehaviour {
 		if(s_Load_Ball)sound.PlayOneShot(s_Load_Ball);
 		Instantiate(ball, pos, Quaternion.identity);
 		Number_Of_Ball_On_Board++;
-	}
+    }
 
 	public void  init_Param_After_Ball_Lost(){										// --> INIT : init_Param_After_Ball_Lost 
 		if(multiplier >10)multiplier = 10;

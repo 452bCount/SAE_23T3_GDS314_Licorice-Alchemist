@@ -94,7 +94,7 @@ public class Ball : MonoBehaviour {
 				rb.isKinematic = false;
 				rb.velocity = tmp_vel;
 			}	
-		}	
+		}
 	}
 
 	public void OnHole(){														// --> Know if ball is on a hole. Prevent bug when a ball enter a hole and player press pause.
@@ -123,5 +123,10 @@ public class Ball : MonoBehaviour {
     {
 		flavour = newFlavour;
 		communicator.UpdateText(flavour, colour);
+    }
+
+    private void OnDestroy()
+    {
+		ChangeFlavour("No Flavour", Color.black);
     }
 }

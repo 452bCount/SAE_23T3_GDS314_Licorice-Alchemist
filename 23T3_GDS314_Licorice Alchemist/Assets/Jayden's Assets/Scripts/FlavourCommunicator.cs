@@ -20,6 +20,5 @@ public class FlavourCommunicator : MonoBehaviour
     {
         textObject.text = ballFlavour;
         textObject.color = colour;
-        Debug.Log(colour);
     }
 }
